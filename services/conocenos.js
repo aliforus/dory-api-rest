@@ -10,7 +10,7 @@ async function getConocenos(page = 1){
         const rows = await db.query(
           `SELECT c.* 
            FROM conocenos as c
-           LIMIT ?,?`, 
+           LIMIT 32, ?`, 
           [offset, config.listPerPage]
         );
         const data = helper.emptyOrRows(rows);

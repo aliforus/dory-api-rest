@@ -21,7 +21,7 @@ async function getResenasGranja(page = 1,idGranja){
                           inner join usuarios as u on (r.usuarios_id=u.id)
         WHERE  g.id_granja=?
         order by r.fecha desc
-              LIMIT ?,?`, 
+              LIMIT 32, ?`, 
         [idGranja,offset, config.listPerPage]
       );  
       const rowspuntajes = await db.query(
@@ -79,7 +79,7 @@ async function getResenaUsuario(token,idGranja){
 async function getMultiple(page = 1){
     const offset = helper.getOffset(page, config.listPerPage);
     const rows = await db.query(
-      `SELECT * FROM reseñas LIMIT ?,?`, 
+      `SELECT * FROM reseñas LIMIT 32, ?`, 
       [offset, config.listPerPage]
     );
     const data = helper.emptyOrRows(rows);

@@ -22,7 +22,7 @@ async function getMultiple(page = 1,cadena){
      FROM tipos_usuarios as tu, usuarios as u
      WHERE (( u.id_tipo_usuario=tu.id_tipo_usuario) and (tu.nombre_tipo_usuario like('%Piscicultor%'))) and 
            ( u.nombres like ? or  u.apellidos like ? )
-           LIMIT ?,?`, 
+           LIMIT 32, ?`, 
     [cad,cad,offset, config.listPerPage]
   );
 

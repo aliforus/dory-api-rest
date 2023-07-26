@@ -11,7 +11,7 @@ async function getMultiple(page = 1){
         `SELECT  n.id as id_normatividad, tn.nombre as tipo, n.nombre as nombre,  n.contenido AS contenido,n.url_descarga AS url_descarga,
                  n.id_tipo_fk as id_tipo, n.fecha as fecha
         FROM normatividades as n inner join tipos_normatividades as tn on n.id_tipo_fk=tn.id_tipo
-         LIMIT ?,?`, 
+         LIMIT 32, ?`, 
         [offset, config.listPerPage]
       );
       const data = helper.emptyOrRows(rows);
@@ -30,7 +30,7 @@ async function getNormatividadesCadena(page = 1, cadena){
           `SELECT  n.id, tn.nombre as tipo,n.nombre as nombre, n.contenido, n.url_descarga, n.fecha 
           FROM  normatividades as n inner join tipos_normatividades as tn on n.id_tipo_fk=tn.id_tipo
           WHERE tn.nombre  like ? or n.nombre like ? or n.contenido like ? 
-          LIMIT ?,?`, 
+          LIMIT 32, ?`, 
           [cad,cad, cad, offset, config.listPerPage]
         );
         const data = helper.emptyOrRows(rows);
@@ -49,7 +49,7 @@ async function getNormatividadesTipo(page = 1, tipo){
         `SELECT  n.id, tn.nombre as tipo,n.nombre as nombre, n.contenido, n.url_descarga, n.fecha, tn.id_tipo 
         FROM normatividades as n inner join tipos_normatividades as tn on n.id_tipo_fk=tn.id_tipo
         WHERE tn.nombre like ?
-        LIMIT ?,?`, 
+        LIMIT 32, ?`, 
         [tipoNormatividad, offset, config.listPerPage]
       );
       const data = helper.emptyOrRows(rows);

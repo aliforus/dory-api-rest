@@ -9,7 +9,7 @@ async function getVeredasMunicipio(page = 1,idMunicipio){
     FROM municipios as m, veredas as v
     WHERE (m.id_municipio=v.id_municipio)  and
           v.id_municipio=? 
-          LIMIT ?,?`, 
+          LIMIT 32, ?`, 
     [idMunicipio, offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
@@ -24,7 +24,7 @@ async function getVeredasMunicipio(page = 1,idMunicipio){
 async function getMultiple(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
-    `SELECT * FROM veredas LIMIT ?,?`, 
+    `SELECT * FROM veredas LIMIT 32, ?`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);

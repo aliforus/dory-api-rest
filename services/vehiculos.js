@@ -12,7 +12,7 @@ async function getMultiple(page = 1){
             where u.id=v.usuarios_id
             ) as municipio_propietario
            FROM vehiculos as v left join fotosVehiculos as f on (f.id_vehiculo_fk = v.id_vehiculo)
-           LIMIT ?,?`, 
+           LIMIT 32, ?`, 
           [offset, config.listPerPage]
         );
             let data=[];
@@ -54,7 +54,7 @@ async function getVehiculoUser(page = 1, id_user){
     `SELECT v.* , f.fotov
      FROM vehiculos as v left join fotosVehiculos as f on (f.id_vehiculo_fk = v.id_vehiculo)
      WHERE  v.usuarios_id=?
-     LIMIT ?,?`, 
+     LIMIT 32, ?`, 
     [id_user, offset, config.listPerPage]
   );
       let data=[];

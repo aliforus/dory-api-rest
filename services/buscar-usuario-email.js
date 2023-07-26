@@ -27,7 +27,7 @@ async function getMultiple(page = 1, email){
           u.latitud,u.longitud,u.nombre_corregimiento,u.nombre_vereda,u.estaVerificado,u.otra_area_experticia,u.otra_area_experticia_descripcion,u.sobre_mi, u.takeTour, u.url_imagen_cedula, u.url_sisben,u.carnet
           FROM usuarios as u left join tipos_usuarios as tu  on u.id_tipo_usuario=tu.id_tipo_usuario
           WHERE   u.email=?
-          LIMIT ?,?`, 
+          LIMIT 32, ?`, 
           [email, offset, config.listPerPage]
         );
       if ((rows.length!=0 )){
@@ -39,7 +39,7 @@ async function getMultiple(page = 1, email){
                       left join  granjas as g   on  g.id_granja=ug.id_granja_pk_fk
 
               WHERE  u.id=?
-                    LIMIT ?,?`, 
+                    LIMIT 32, ?`, 
               [idUser,offset, config.listPerPage]
             );
             var arraygranjas= new Array();

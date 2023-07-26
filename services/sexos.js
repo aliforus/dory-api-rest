@@ -7,7 +7,7 @@ var createError = require('http-errors');
 async function getSexos(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
-    `SELECT * FROM sexos LIMIT ?,?`, 
+    `SELECT * FROM sexos LIMIT 32, ?`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);

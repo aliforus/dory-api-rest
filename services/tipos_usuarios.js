@@ -10,7 +10,7 @@ async function getMultiple(page = 1){
     `SELECT tu.* 
     FROM tipos_usuarios AS tu
     WHERE tu.id_tipo_usuario != -1
-    LIMIT ?,?`, 
+    LIMIT 32, ?`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);

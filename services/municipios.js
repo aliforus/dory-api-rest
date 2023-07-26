@@ -13,7 +13,7 @@ async function getMunicipio(page = 1,id_municipio){
             m.latitud, m.longitud
      FROM municipios as m
      WHERE m.id_municipio=?
-     LIMIT ?,?`, 
+     LIMIT 32, ?`, 
     [id_municipio, offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
@@ -31,7 +31,7 @@ async function GetMunicipioDelDepartamento(page = 1,idDepartamento){
     `SELECT m.id_municipio, m.nombre
     FROM municipios as m, departamentos as d
     WHERE (m.id_departamento_fk=d.id_departamento)  and
-          d.id_departamento=? LIMIT ?,?`, 
+          d.id_departamento=? LIMIT 32, ?`, 
     [idDepartamento, offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
@@ -46,7 +46,7 @@ async function GetMunicipioDelDepartamento(page = 1,idDepartamento){
 async function getMultiple(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
-    `SELECT * FROM municipios LIMIT ?,?`, 
+    `SELECT * FROM municipios LIMIT 32, ?`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
