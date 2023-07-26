@@ -10,7 +10,7 @@ async function getintegrantes(page = 1){
         const rows = await db.query(
           `SELECT i.*,e.url_enlace
            FROM integrantes as i left join enlaces as e on (e.id_integrante = i.id) 
-           LIMIT 32, ?`, 
+           LIMIT 32;`, 
           [offset, config.listPerPage]
         );
         let data=[];

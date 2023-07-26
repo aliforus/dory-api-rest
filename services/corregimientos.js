@@ -5,7 +5,7 @@ const config = require('../config');
 async function getMultiple(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
-    `SELECT * FROM corregimientos LIMIT 32, ?`, 
+    `SELECT * FROM corregimientos LIMIT 32;`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
@@ -24,7 +24,7 @@ async function getCorregimientosMunicipio(page = 1,idMunicipio){
     FROM municipios as m, corregimientos as c
     WHERE (m.id_municipio=c.id_municipio)  and
           c.id_municipio=? 
-          LIMIT 32, ?`, 
+          LIMIT 32;`, 
     [idMunicipio, offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);

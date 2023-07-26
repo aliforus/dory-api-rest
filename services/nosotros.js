@@ -10,7 +10,7 @@ async function getNosotros(page = 1){
         const rows = await db.query(
           `SELECT nos.* 
            FROM nosotros as nos
-           LIMIT 32, ?`, 
+           LIMIT 32;`, 
           [offset, config.listPerPage]
         );
         const data = helper.emptyOrRows(rows);

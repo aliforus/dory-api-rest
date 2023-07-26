@@ -18,7 +18,7 @@ async function getPescadoresTodos(page = 1){
     u.latitud,u.longitud
  FROM tipos_usuarios as tu, usuarios as u
  WHERE (u.id_tipo_usuario=tu.id_tipo_usuario) and (tu.nombre_tipo_usuario like('Pescador')) and u.estaVerificado=1
-           LIMIT 32, ?`, 
+           LIMIT 32;`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
@@ -45,7 +45,7 @@ async function getPescadoresMunicipio(page = 1,idMunicipio){
  FROM tipos_usuarios as tu, usuarios as u
  WHERE (u.id_tipo_usuario=tu.id_tipo_usuario) and (tu.nombre_tipo_usuario like('Pescador')) and u.estaVerificado=1 and 
        u.id_municipio=?
-           LIMIT 32, ?`, 
+           LIMIT 32;`, 
     [idMunicipio,offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
@@ -70,7 +70,7 @@ async function getPescadoresDepartamento(page = 1, idDepartamento){
                                   left join veredas as v  on  (v.id_municipio=m.id_municipio) 
                                   left join   usuarios as u on (m.id_municipio=u.id_municipio)
         WHERE m.id_departamento_fk=?
-        LIMIT 32, ?`, 
+        LIMIT 32;`, 
         [idDepartamento, offset, config.listPerPage]
      );
   const data = helper.emptyOrRows(rows);
@@ -115,7 +115,7 @@ async function getPescadoresAsociacion(page = 1,nit){
                         inner join solicitudes as s on (u.id=s.usuarios_id and s.id_estado_fk=2)				   
                         inner join asociaciones as a on (a.nit=s.nit_asociacion_fk)                                   
     WHERE  a.nit=?
-            LIMIT 32, ?`, 
+            LIMIT 32;`, 
     [nit,offset, config.listPerPage]
   );
      const row = await db.query(

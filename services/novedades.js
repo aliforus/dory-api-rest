@@ -20,7 +20,7 @@ async function getMultiple(page = 1,token){
                               left join categorias_novedades as cn on (cn.id_novedad_pk_fk=n.id_novedad)
                               left join categorias as c on (cn.id_categoria_pk_fk=c.id_categoria)
           order by  n.id_novedad
-          LIMIT 32, ?`, 
+          LIMIT 32;`, 
         [payload.sub,payload.sub,offset, config.listPerPage]
       );
     }else{
@@ -34,7 +34,7 @@ async function getMultiple(page = 1,token){
                                                       left join categorias_novedades as cn on (cn.id_novedad_pk_fk=n.id_novedad)
                                                       left join categorias as c on (cn.id_categoria_pk_fk=c.id_categoria)
                   order by  n.id_novedad
-                  LIMIT 32, ?`, 
+                  LIMIT 32;`, 
           [offset, config.listPerPage]
         );
     }
@@ -428,7 +428,7 @@ async function getNovedadesTipo(page = 1, tipo, token){
                             left join categorias as c on (cn.id_categoria_pk_fk=c.id_categoria)
             WHERE (n.id_tipo_novedad=tn.id_tipo_novedad) and (tn.nombre like ?)
             order by n.id_novedad
-            LIMIT 32, ?`, 
+            LIMIT 32;`, 
             [user,cad, offset, config.listPerPage]
           );          
           if(rows[0] != undefined){
@@ -484,7 +484,7 @@ async function getNovedadesCadena(page = 1, cadena, token){
 
                 WHERE  n.titulo like ? or n.autor like ? or n.cuerpo like ? or n.resumen like ?
                 order by n.id_novedad
-                LIMIT 32, ?`, 
+                LIMIT 32;`, 
                   [user,cad, cad, cad, cad, offset, config.listPerPage]
                 );            
                 if(rows[0] != undefined){
@@ -538,7 +538,7 @@ async function getArticulos(page = 1, cadena,token){
                                   inner join categorias as c on (cn.id_categoria_pk_fk=c.id_categoria)
               WHERE n.titulo like ? or n.autor like ? or n.cuerpo like ? or n.resumen like ?
               order by n.id_novedad
-              LIMIT 32, ?`, 
+              LIMIT 32;`, 
             [user,cad, cad, cad, cad, offset, config.listPerPage]
           );            
           if(rows[0] != undefined){
@@ -592,7 +592,7 @@ async function getArticulosColombianos(page = 1, cadena,token){
                                   inner join categorias as c on (cn.id_categoria_pk_fk=c.id_categoria)
               WHERE n.titulo like ? or n.autor like ? or n.cuerpo like ? or n.resumen like ?
               order by n.id_novedad
-              LIMIT 32, ?`, 
+              LIMIT 32;`, 
             [user,cad, cad, cad, cad, offset, config.listPerPage]
           );     
           if(rows[0] != undefined){
@@ -647,7 +647,7 @@ async function getRevistas(page = 1, cadena,token){
                               inner join categorias as c on (cn.id_categoria_pk_fk=c.id_categoria)
           WHERE n.titulo like ? or n.autor like ? or n.cuerpo like ? or n.resumen like ?
           order by n.id_novedad
-          LIMIT 32, ?`, 
+          LIMIT 32;`, 
         [user,cad, cad, cad, cad, offset, config.listPerPage]
       );     
       if(rows[0] != undefined){
@@ -701,7 +701,7 @@ async function getNoticias(page = 1, cadena,token){
                                 inner join categorias as c on (cn.id_categoria_pk_fk=c.id_categoria)
             WHERE n.titulo like ? or n.autor like ? or n.cuerpo like ? or n.resumen like ? 
             order by n.id_novedad
-            LIMIT 32, ?`, 
+            LIMIT 32;`, 
           [user,cad, cad, cad, cad, offset, config.listPerPage]
         );     
         if(rows[0] != undefined){

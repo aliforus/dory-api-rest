@@ -14,7 +14,7 @@ async function buscarGranjaCadena(page = 1,cadena){
             WHERE  g.nombre like ? or
                     g.descripcion like ? or
                     g.area like ?                    
-                  LIMIT 32, ?`, 
+                  LIMIT 32;`, 
             [cad,cad,cad, offset, config.listPerPage]
           );
           var nuevoRows = new Array();
@@ -25,7 +25,7 @@ async function buscarGranjaCadena(page = 1,cadena){
             `SELECT f.id_foto,f.imagen
             FROM  fotos as f
             WHERE f.id_granja_fk =?
-              LIMIT 32, ?`, 
+              LIMIT 32;`, 
           [indice,offset, config.listPerPage]
           );
         var arrayfotos= new Array();
@@ -40,7 +40,7 @@ async function buscarGranjaCadena(page = 1,cadena){
             WHERE (u.id=ug.usuarios_id) and
               (g.id_granja=ug.id_granja_pk_fk) and
               (ug.espropietario=1) and
-              g.id_granja=? LIMIT 32, ?`,
+              g.id_granja=? LIMIT 32;`,
               [indice,offset, config.listPerPage]
               );
               var arraypropietarios= new Array();
@@ -53,7 +53,7 @@ async function buscarGranjaCadena(page = 1,cadena){
             from granjas as g, especies_granjas as eg, especies as e
             where (e.id_especie=eg.id_especie_pk_fk) and 
                   (eg.id_granja_pk_fk=g.id_granja) and 
-                  g.id_granja=? LIMIT 32, ?`, 
+                  g.id_granja=? LIMIT 32;`, 
           [indice,offset, config.listPerPage]
         );
         var arrayespecies= new Array();
@@ -66,7 +66,7 @@ async function buscarGranjaCadena(page = 1,cadena){
             from granjas as g, infraestructuras_granjas as ig, infraestructuras as i
             where (i.id_infraestructura=ig.id_infraestructura_pk_fk) and 
                   (ig.id_granja_pk_fk=g.id_granja) and 
-                  g.id_granja=? LIMIT 32, ?`, 
+                  g.id_granja=? LIMIT 32;`, 
           [indice,offset, config.listPerPage]
         );
         var arrayinfraestructuras= new Array();
@@ -93,7 +93,7 @@ async function buscarGranjaCadena(page = 1,cadena){
                               (select count(*) from reseñas r1,granjas g1 where r1.id_granja_pk_fk=g1.id_granja and r1.id_granja_pk_fk= g.id_granja and g1.id_granja=g.id_granja) as count_resenas
                         FROM granjas as g
                         WHERE   g.nombre like ? or  g.descripcion like ? or g.area like ?  and ( g.id_municipio = ? )                 
-                              LIMIT 32, ?`, 
+                              LIMIT 32;`, 
                         [cad,cad,cad, idMunicipio, offset, config.listPerPage]
                       );
                       var nuevoRows = new Array();
@@ -104,7 +104,7 @@ async function buscarGranjaCadena(page = 1,cadena){
                         `SELECT f.id_foto,f.imagen
                         FROM  fotos as f
                         WHERE f.id_granja_fk =?
-                          LIMIT 32, ?`, 
+                          LIMIT 32;`, 
                       [indice,offset, config.listPerPage]
                       );
                     var arrayfotos= new Array();
@@ -119,7 +119,7 @@ async function buscarGranjaCadena(page = 1,cadena){
                         WHERE (u.id=ug.usuarios_id) and
                           (g.id_granja=ug.id_granja_pk_fk) and
                           (ug.espropietario=1) and
-                          g.id_granja=? LIMIT 32, ?`,
+                          g.id_granja=? LIMIT 32;`,
                           [indice,offset, config.listPerPage]
                           );
                           var arraypropietarios= new Array();
@@ -132,7 +132,7 @@ async function buscarGranjaCadena(page = 1,cadena){
                         from granjas as g, especies_granjas as eg, especies as e
                         where (e.id_especie=eg.id_especie_pk_fk) and 
                               (eg.id_granja_pk_fk=g.id_granja) and 
-                              g.id_granja=? LIMIT 32, ?`, 
+                              g.id_granja=? LIMIT 32;`, 
                       [indice,offset, config.listPerPage]
                     );
                     var arrayespecies= new Array();
@@ -145,7 +145,7 @@ async function buscarGranjaCadena(page = 1,cadena){
                         from granjas as g, infraestructuras_granjas as ig, infraestructuras as i
                         where (i.id_infraestructura=ig.id_infraestructura_pk_fk) and 
                               (ig.id_granja_pk_fk=g.id_granja) and 
-                              g.id_granja=? LIMIT 32, ?`, 
+                              g.id_granja=? LIMIT 32;`, 
                       [indice,offset, config.listPerPage]
                     );
                     var arrayinfraestructuras= new Array();

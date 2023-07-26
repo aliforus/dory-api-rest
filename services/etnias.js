@@ -7,7 +7,7 @@ var createError = require('http-errors');
 async function getEtnias(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
-    `SELECT * FROM etnias LIMIT 32, ?`, 
+    `SELECT * FROM etnias LIMIT 32;`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);

@@ -23,7 +23,7 @@ async function getGranjaUsuario(page = 1,id_usuario,token){
                                   inner join usuarios_granjas as ug on g.id_granja=ug.id_granja_pk_fk and ug.espropietario=1 and ug.usuarios_id=?
                                   inner join usuarios as u on ug.usuarios_id=u.id                                        
                 WHERE u.id=?  
-                LIMIT 32, ?`, 
+                LIMIT 32;`, 
                 [id_user,id_usuario,id_usuario, offset, config.listPerPage]
             );
        }else{        
@@ -36,7 +36,7 @@ async function getGranjaUsuario(page = 1,id_usuario,token){
                                     inner join usuarios_granjas as ug on g.id_granja=ug.id_granja_pk_fk and ug.espropietario=1 and ug.usuarios_id=?
                                     inner join usuarios as u on ug.usuarios_id=u.id                                          
                   WHERE u.id=?  
-                  LIMIT 32, ?`, 
+                  LIMIT 32;`, 
                   [id_usuario, id_usuario, offset, config.listPerPage]
               );
        }
@@ -108,7 +108,7 @@ async function getGranjasTodas(page = 1,token){
                                   (select m.nombre from municipios as m  where m.id_municipio=g.id_municipio) as nombre_municipio
                 FROM  granjas as g left join fotos as f on (f.id_granja_fk = g.id_granja)
                                   left join usuarios_granjas as ug on (g.id_granja = ug.id_granja_pk_fk) 
-                      LIMIT 32, ?`, 
+                      LIMIT 32;`, 
                 [id_user,offset, config.listPerPage]
               );
         }else{
@@ -122,7 +122,7 @@ async function getGranjasTodas(page = 1,token){
                               (select m.nombre from municipios as m  where m.id_municipio=g.id_municipio) as nombre_municipio
             FROM  granjas as g left join fotos as f on (f.id_granja_fk = g.id_granja)
                               left join usuarios_granjas as ug on (g.id_granja = ug.id_granja_pk_fk) 
-                  LIMIT 32, ?`, 
+                  LIMIT 32;`, 
             [offset, config.listPerPage]
           );
         }
@@ -169,7 +169,7 @@ async function getGranjasMayorCalificacion(page = 1,idMunicipio){
              FROM granjas as g left join  reseñas as r on (g.id_granja=r.id_granja_pk_fk)
              WHERE g.id_municipio=?
              order by r.calificacion desc
-            LIMIT 32, ?`, 
+            LIMIT 32;`, 
             [idMunicipio, offset, config.listPerPage]
           );
           const data = helper.emptyOrRows(rows);
@@ -196,7 +196,7 @@ async function getGranjasMayorArea(page = 1,idMunicipio){
             FROM granjas as g 
             WHERE g.id_municipio=?
             order by g.area desc
-            LIMIT 32, ?`, 
+            LIMIT 32;`, 
             [idMunicipio, offset, config.listPerPage]
           );
           const data = helper.emptyOrRows(rows);
@@ -223,7 +223,7 @@ async function getGranjasMenorArea(page = 1,idMunicipio){
             FROM granjas as g 
             WHERE g.id_municipio=?
             order by g.area asc
-            LIMIT 32, ?`, 
+            LIMIT 32;`, 
             [idMunicipio, offset, config.listPerPage]
           );
           const data = helper.emptyOrRows(rows);
@@ -586,7 +586,7 @@ async function createGranja(body,token){
                                     left join corregimientos as c on (c.id_municipio=g.id_municipio)
                                     left join veredas as v  on  (v.id_municipio=g.id_municipio) 
             WHERE m.id_departamento_fk=?
-                    LIMIT 32, ?`, 
+                    LIMIT 32;`, 
             [idDepartamento,offset, config.listPerPage]
           );
           const data = helper.emptyOrRows(rows);
@@ -614,7 +614,7 @@ async function createGranja(body,token){
                   FROM  granjas as g left join fotos as f on (f.id_granja_fk = g.id_granja)
                                     left join usuarios_granjas as ug on (g.id_granja = ug.id_granja_pk_fk)      
                   WHERE   g.id_municipio=? 
-                        LIMIT 32, ?`, 
+                        LIMIT 32;`, 
                   [id_user,idMunicipio,offset, config.listPerPage]
                 );
           }else{
@@ -629,7 +629,7 @@ async function createGranja(body,token){
               FROM  granjas as g left join fotos as f on (f.id_granja_fk = g.id_granja)
                                 left join usuarios_granjas as ug on (g.id_granja = ug.id_granja_pk_fk)      
               WHERE   g.id_municipio=? 
-                    LIMIT 32, ?`, 
+                    LIMIT 32;`, 
               [idMunicipio,offset, config.listPerPage]
             );
           }
@@ -680,7 +680,7 @@ async function createGranja(body,token){
                           (select m.nombre from municipios as m inner join granjas as gr on m.id_municipio = gr.id_municipio where gr.id_granja = g.id_granja) as nombre_municipio
                     FROM granjas as g
                     WHERE  g.id_granja=?
-                          LIMIT 32, ?`, 
+                          LIMIT 32;`, 
                     [id_user,idGranja,idGranja,offset, config.listPerPage]
                   );                   
           }else{
@@ -695,7 +695,7 @@ async function createGranja(body,token){
                         (select m.nombre from municipios as m inner join granjas as gr on m.id_municipio = gr.id_municipio where gr.id_granja = g.id_granja) as nombre_municipio
                   FROM granjas as g
                   WHERE  g.id_granja=?
-                        LIMIT 32, ?`, 
+                        LIMIT 32;`, 
                   [idGranja,idGranja,offset, config.listPerPage]
                 );
           }
@@ -706,7 +706,7 @@ async function createGranja(body,token){
               `SELECT f.id_foto,f.imagen
               FROM  fotos as f
               WHERE f.id_granja_fk =?
-                LIMIT 32, ?`, 
+                LIMIT 32;`, 
             [idGranja,offset, config.listPerPage]
             );  
             var arrayfotos= new Array();  
@@ -722,7 +722,7 @@ async function createGranja(body,token){
                     WHERE (u.id=ug.usuarios_id) and
                     (g.id_granja=ug.id_granja_pk_fk) and
                     (ug.espropietario=1) and
-                    g.id_granja=? LIMIT 32, ?`,
+                    g.id_granja=? LIMIT 32;`,
                     [idGranja,offset, config.listPerPage]
               );        
                     var arraypropietarios= new Array();
@@ -735,7 +735,7 @@ async function createGranja(body,token){
                   from granjas as g, especies_granjas as eg, especies as e
                   where (e.id_especie=eg.id_especie_pk_fk) and 
                         (eg.id_granja_pk_fk=g.id_granja) and 
-                          g.id_granja=? LIMIT 32, ?`, 
+                          g.id_granja=? LIMIT 32;`, 
                   [idGranja,offset, config.listPerPage]
                 );  
                 var arrayespecies= new Array();  
@@ -748,7 +748,7 @@ async function createGranja(body,token){
                   from granjas as g, infraestructuras_granjas as ig, infraestructuras as i
                   where (i.id_infraestructura=ig.id_infraestructura_pk_fk) and 
                         (ig.id_granja_pk_fk=g.id_granja) and 
-                        g.id_granja=? LIMIT 32, ?`, 
+                        g.id_granja=? LIMIT 32;`, 
                   [idGranja,offset, config.listPerPage]
                 );  
                 var arrayinfraestructuras= new Array();        

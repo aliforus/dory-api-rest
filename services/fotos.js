@@ -6,7 +6,7 @@ const createError = require('http-errors');
 async function getMultiple(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
-    `SELECT * FROM fotos LIMIT 32, ?`, 
+    `SELECT * FROM fotos LIMIT 32;`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);

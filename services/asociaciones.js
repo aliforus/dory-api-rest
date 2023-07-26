@@ -70,7 +70,7 @@ async function getAsociacionesDepartamento(page = 1, idDepartamento){
                                  left join corregimientos as c on c.id_municipio = m.id_municipio
                                  left join veredas as v on v.id_municipio = m.id_municipio        
         WHERE  d.id_departamento=?
-              LIMIT 32, ?`, 
+              LIMIT 32;`, 
             [idDepartamento, offset, config.listPerPage]
        );
         const data = helper.emptyOrRows(rows);
@@ -213,7 +213,7 @@ async function getAsociacionesUser(page = 1, id_user){
                           (select ta.nombre from tipos_asociaciones as ta where ta.id_tipo_asociacion = a.id_tipo_asociacion_fk) as tipo_asociacion
                   FROM asociaciones as a left join asociaciones_usuarios as au on (a.nit=au.nit_asociacion_pk_fk)
                   WHERE au.usuarios_id=?
-                   LIMIT 32, ?`, 
+                   LIMIT 32;`, 
                   [id_user,offset, config.listPerPage]
                 );                
                 const data = helper.emptyOrRows(rows);

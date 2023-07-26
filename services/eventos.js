@@ -11,7 +11,7 @@ async function getMultiple(page = 1){
      FROM  eventos as e inner join tipos_eventos as te on e.id_tipo_evento_fk=te.id_evento
                         inner join modalidades as m on e.id_modalidad_fk=m.id_modalidad
      order by e.id_evento asc
-     LIMIT 32, ?`, 
+     LIMIT 32;`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
@@ -30,7 +30,7 @@ async function getEventosCapacitaciones(page = 1, cadena){
         `SELECT distinct e.id_evento, e.nombre as nombre,e.url, e.resumen, e.fecha, e.hora, e.dirigidoa, e.organizador, e.costo, e.imagen, te.nombre as tipo
          FROM eventos as e inner join tipos_eventos as te  on ((te.nombre like '%Capacitaciones%') and (e.id_tipo_evento_fk=te.id_evento))                                              
          WHERE e.nombre like ? or e.resumen like ? or e.organizador like ? or e.dirigidoa like ?
-         LIMIT 32, ?`, 
+         LIMIT 32;`, 
         [cad, cad, cad, cad, offset, config.listPerPage]
       );  
       const data = helper.emptyOrRows(rows);
@@ -49,7 +49,7 @@ async function getEventosCongresos(page = 1, cadena){
         `SELECT distinct e.id_evento, e.nombre as nombre,e.url, e.resumen, e.fecha, e.hora, e.dirigidoa, e.organizador, e.costo, e.imagen, te.nombre as tipo
         FROM eventos as e inner join tipos_eventos as te on ((te.nombre like '%Congresos%') and (e.id_tipo_evento_fk=te.id_evento))                                              
         WHERE e.nombre like ? or e.resumen like ? or e.organizador like ? or e.dirigidoa like ? 
-        LIMIT 32, ?`, 
+        LIMIT 32;`, 
         [cad, cad, cad, cad, offset, config.listPerPage]
       );  
       const data = helper.emptyOrRows(rows);
@@ -68,7 +68,7 @@ async function getEventosCursos(page = 1, cadena){
         `SELECT distinct e.id_evento, e.nombre as nombre,e.url, e.resumen, e.fecha, e.hora, e.dirigidoa, e.organizador, e.costo, e.imagen, te.nombre as tipo
         FROM eventos as e inner join tipos_eventos as te  on ((te.nombre like '%Cursos%') and (e.id_tipo_evento_fk=te.id_evento))                                              
         WHERE e.nombre like ? or e.resumen like ? or e.organizador like ? or e.dirigidoa like ?
-         LIMIT 32, ?`, 
+         LIMIT 32;`, 
         [cad, cad, cad, cad, offset, config.listPerPage]
       );
       const data = helper.emptyOrRows(rows);
@@ -88,7 +88,7 @@ async function getEventosDiplomados(page = 1, cadena){
         `SELECT distinct e.id_evento, e.nombre as nombre,e.url, e.resumen, e.fecha, e.hora, e.dirigidoa, e.organizador, e.costo, e.imagen, te.nombre as tipo
         FROM eventos as e inner join tipos_eventos as te  on ((te.nombre like '%Diplomados%') and (e.id_tipo_evento_fk=te.id_evento))  
         WHERE    e.nombre like ? or e.resumen like ? or e.organizador like ? or e.dirigidoa like ? 
-        LIMIT 32, ?`, 
+        LIMIT 32;`, 
         [cad, cad, cad, cad, offset, config.listPerPage]
       );
       const data = helper.emptyOrRows(rows);
@@ -107,7 +107,7 @@ async function getEventosSeminarios(page = 1, cadena){
         `SELECT distinct e.id_evento, e.nombre as nombre,e.url, e.resumen, e.fecha, e.hora, e.dirigidoa, e.organizador, e.costo, e.imagen, te.nombre as tipo
         FROM eventos as e inner join tipos_eventos as te on ((te.nombre like '%Seminarios%') and (e.id_tipo_evento_fk=te.id_evento))                                         
         WHERE e.nombre like ? or e.resumen like ? or e.organizador like ? or e.dirigidoa like ?
-        LIMIT 32, ?`, 
+        LIMIT 32;`, 
         [cad, cad, cad, cad, offset, config.listPerPage]
       );
       const data = helper.emptyOrRows(rows);
@@ -126,7 +126,7 @@ async function getEventosTalleres(page = 1, cadena){
             `SELECT distinct e.id_evento, e.nombre as nombre,e.url, e.resumen, e.fecha, e.hora, e.dirigidoa, e.organizador, e.costo, e.imagen, te.nombre as tipo
             FROM eventos as e inner join tipos_eventos as te on ((te.nombre like '%Talleres%') and (e.id_tipo_evento_fk=te.id_evento))                                             
             WHERE e.nombre like ? or e.resumen like ? or e.organizador like ? or e.dirigidoa like ?
-            LIMIT 32, ?`, 
+            LIMIT 32;`, 
             [cad, cad, cad, cad, offset, config.listPerPage]
           );
           const data = helper.emptyOrRows(rows);
@@ -146,7 +146,7 @@ async function getEventosTipos(page = 1, tipo){
         FROM eventos as e inner join tipos_eventos as te on e.id_tipo_evento_fk=te.id_evento
                           inner join modalidades as m on e.id_modalidad_fk=m.id_modalidad      
         WHERE te.nombre like ?
-        LIMIT 32, ?`, 
+        LIMIT 32;`, 
         [tipoEvento, offset, config.listPerPage]
       );
       const data = helper.emptyOrRows(rows);

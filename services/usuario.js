@@ -25,7 +25,7 @@ async function getUserId(page = 1, idUser){
       FROM tipos_usuarios as tu, usuarios as u
       WHERE u.id_tipo_usuario=tu.id_tipo_usuario and
             u.id=?
-      LIMIT 32, ?`, 
+      LIMIT 32;`, 
       [idUser, offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
@@ -49,7 +49,7 @@ async function getMultiple(page = 1){
             u.id_departamento,u.id_municipio,u.id_corregimiento,u.id_vereda,
             u.latitud,u.longitud,u.nombre_corregimiento,u.nombre_vereda,u.estaVerificado,u.otra_area_experticia,u.otra_area_experticia_descripcion,u.sobre_mi, u.informacion_adicional_direccion
      FROM usuarios as u 
-     LIMIT 32, ?`, 
+     LIMIT 32;`, 
     [offset, config.listPerPage]
   );
   const data = helper.emptyOrRows(rows);
@@ -1002,7 +1002,7 @@ async function updateMisconsumos(body, token){
         FROM tipos_usuarios as tu, usuarios as u
         WHERE u.id_tipo_usuario=tu.id_tipo_usuario and
               u.id_tipo_usuario=2 and u.estaverificado=1
-        LIMIT 32, ?`, 
+        LIMIT 32;`, 
         [ offset, config.listPerPage]
     );
     const data = helper.emptyOrRows(rows);
@@ -1031,7 +1031,7 @@ async function updateMisconsumos(body, token){
         FROM tipos_usuarios as tu, usuarios as u
         WHERE u.id_tipo_usuario=tu.id_tipo_usuario and
               u.id_tipo_usuario=6 and u.estaverificado=1
-        LIMIT 32, ?`, 
+        LIMIT 32;`, 
         [ offset, config.listPerPage]
     );
     const data = helper.emptyOrRows(rows);
@@ -1060,7 +1060,7 @@ async function updateMisconsumos(body, token){
         FROM tipos_usuarios as tu, usuarios as u
         WHERE u.id_tipo_usuario=tu.id_tipo_usuario and
               u.id_tipo_usuario=4 and u.estaverificado=1
-        LIMIT 32, ?`, 
+        LIMIT 32;`, 
         [ offset, config.listPerPage]
     );
     const data = helper.emptyOrRows(rows);
@@ -1089,7 +1089,7 @@ async function updateMisconsumos(body, token){
         FROM tipos_usuarios as tu, usuarios as u
         WHERE u.id_tipo_usuario=tu.id_tipo_usuario and
               u.id_tipo_usuario=3 and u.estaverificado=1
-        LIMIT 32, ?`, 
+        LIMIT 32;`, 
         [ offset, config.listPerPage]
     );
     const data = helper.emptyOrRows(rows);
@@ -1118,7 +1118,7 @@ async function updateMisconsumos(body, token){
         FROM tipos_usuarios as tu, usuarios as u
         WHERE u.id_tipo_usuario=tu.id_tipo_usuario and
               u.id_tipo_usuario=5 and u.estaverificado=1
-        LIMIT 32, ?`, 
+        LIMIT 32;`, 
         [ offset, config.listPerPage]
     );
     const data = helper.emptyOrRows(rows);
