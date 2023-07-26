@@ -95,7 +95,7 @@ app.use(cors());
 
 app.route('/')
   .get(function (req, res) {
-    res.sendFile(process.cwd() + '/index.html');
+    res.sendFile(process.cwd() + './index.html');
 });
 
 app.use('/api/departamentos', departamentosRouter)
